@@ -14,6 +14,7 @@ routes.post(
   validate(validators.User),
   handle(controllers.UserController.store)
 )
+routes.get('/users', handle(controllers.UserController.index))
 routes.post(
   '/sessions',
   validate(validators.Session),
@@ -43,6 +44,11 @@ routes.delete('/ads/:id', handle(controllers.AdController.destroy))
 /**
  * Purchases
  */
-routes.post('/purchases', handle(controllers.PurchaseController.store))
+routes.post(
+  '/purchases',
+  validate(validators.Purchase),
+  handle(controllers.PurchaseController.store)
+)
+routes.get('/purchases', handle(controllers.PurchaseController.index))
 
 module.exports = routes

@@ -14,7 +14,7 @@ const Purchase = new mongoose.Schema({
   buyerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: false
+    required: true
   },
   buyerEmail: {
     type: String,
