@@ -1,8 +1,4 @@
-const Ad = require('../models/Ad')
-const User = require('../models/User')
 const Purchase = require('../models/Purchase')
-const PurchseMail = require('../jobs/PurchaseMail')
-const Queue = require('../services/Queue')
 
 class PendingPurchaseController {
   async index (req, res) {
