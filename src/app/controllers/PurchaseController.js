@@ -1,13 +1,14 @@
 const Ad = require('../models/Ad')
 const User = require('../models/User')
+const Purchase = require('../models/Purchase')
 const PurchseMail = require('../jobs/PurchaseMail')
 const Queue = require('../services/Queue')
 
 class PurchaseController {
   async store (req, res) {
-    const { ad, content } = req.body
+    const { adId, content } = req.body
 
-    const purchaseAd = await Ad.findById(ad).populate('author')
+    const purchaseAd = await Ad.findById(adId).populate('author')
     const user = await User.findById(req.userId)
 
     Queue.create(PurchseMail.key, {
@@ -16,7 +17,22 @@ class PurchaseController {
       content
     }).save()
 
-    return res.send()
+    // console.log(`Ad: ${ad}`)
+    console.log(`Purchase Ad: ${purchaseAd.title}`)
+    // console.log(`Content: ${content}`)
+    // console.log(`User: ${user}`)
+    // console.log(`ReqBody: ${req.body}`)
+
+    // const purchase = await Purchase.create({ ...req.body, buyer: req.userId })
+    const purchase = await Purchase.create({
+      ...req.body,
+      buyerId: req.userId,
+      buyerEmail: user.email,
+      title: purchaseAd.title,
+      price: purchaseAd.price
+    })
+
+    return [res.send(), res.json(purchase)]
   }
 }
 

@@ -2,24 +2,33 @@ const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate')
 
 const Purchase = new mongoose.Schema({
-  title: {
-    type: String,
-    require: true
+  adId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Ad',
+    require: false
   },
-  description: {
+  content: {
     type: String,
-    required: true
+    required: false
   },
-  author: {
+  buyerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
+    required: false
+  },
+  buyerEmail: {
+    type: String,
     required: true
+  },
+  title: {
+    type: String,
+    require: false
   },
   price: {
     type: Number,
     required: true
   },
-  createdAt: {
+  date: {
     type: Date,
     default: Date.now
   }
