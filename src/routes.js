@@ -51,4 +51,9 @@ routes.post(
 )
 routes.get('/purchases', handle(controllers.PurchaseController.index))
 
+routes.get(
+  '/pending_purchases',
+  handle(controllers.PendingPurchaseController.index)
+)
+
 module.exports = routes

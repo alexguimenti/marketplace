@@ -23,8 +23,6 @@ class PurchaseController {
       content
     }).save()
 
-    console.log(user)
-
     const purchase = await Purchase.create({
       ...req.body,
       title: purchaseAd.title,
@@ -34,7 +32,6 @@ class PurchaseController {
     })
 
     return res.json(purchase)
-    // return [res.send(), ]
   }
 }
 

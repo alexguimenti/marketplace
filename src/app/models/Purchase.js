@@ -31,6 +31,11 @@ const Purchase = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  status: {
+    type: String,
+    required: true,
+    default: 'pending'
   }
 })
 
