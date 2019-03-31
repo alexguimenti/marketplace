@@ -23,7 +23,7 @@ const Ad = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  bought: {
+  purchased: {
     type: Boolean,
     required: true,
     default: false
