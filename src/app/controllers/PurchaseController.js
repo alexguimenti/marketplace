@@ -33,6 +33,24 @@ class PurchaseController {
 
     return res.json(purchase)
   }
+
+  async show (req, res) {
+    const purchase = await Purchase.findById(req.params.id)
+
+    return res.json(purchase)
+  }
+
+  async update (req, res) {
+    const pendingPurchase = await Purchase.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true // depois de dar update vai atualizar com novas infos
+      }
+    )
+
+    return res.json(pendingPurchase)
+  }
 }
 
 module.exports = new PurchaseController()

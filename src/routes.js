@@ -55,5 +55,11 @@ routes.get(
   '/pending_purchases',
   handle(controllers.PendingPurchaseController.index)
 )
+routes.get('/purchases/:id', handle(controllers.PurchaseController.show))
+routes.put(
+  '/purchases/:id',
+  validate(validators.Purchase),
+  handle(controllers.PurchaseController.update)
+)
 
 module.exports = routes
